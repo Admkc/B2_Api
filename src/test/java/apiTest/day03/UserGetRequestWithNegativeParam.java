@@ -89,7 +89,6 @@ public class UserGetRequestWithNegativeParam {
         mapbody.put("skills","Cypress");
         mapbody.put("pagesize",50);
         mapbody.put("page",1);
-
         Response response=given().accept(ContentType.JSON)
                 .queryParams(mapbody)
                 .when().log().all()

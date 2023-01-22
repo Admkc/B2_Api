@@ -18,16 +18,12 @@ public class Pratic {
      ve response body sinde bulunan title ın "optio dolar monestio sit"
       oldugunu test edin
      */
-
     @Test
     public void test1(){
 
         String url="https://jsonplaceholder.typicode.com/posts/44";
-
         Response response= RestAssured.given().when().get(url);
-
         System.out.println("response.statusCode() = " + response.statusCode());
-
 
         System.out.println("response.prettyPrint() = " + response.prettyPrint());
 
@@ -39,7 +35,9 @@ public class Pratic {
 
         JsonPath actbody=response.jsonPath();
 
-        Assert.assertEquals(actbody,"userId");
+
+
+
 
 
     }

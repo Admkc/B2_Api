@@ -9,6 +9,7 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -64,28 +65,35 @@ public class UserWith_JsonPath {
      */
     @Test
     public void test2(){
-
-        Response response=given().accept(ContentType.JSON)
+        Response response= given().accept(ContentType.JSON)
                 .queryParam("pagesize",50)
                 .queryParam("page",1)
                 .when()
                 .get("/allusers/alluser");
+        response.prettyPrint();
 
         Assert.assertEquals(response.statusCode(),200);
         Assert.assertEquals(response.contentType(),"application/json; charset=UTF-8");
 
         JsonPath jsonPath=response.jsonPath();
 
-        String secondName=jsonPath.getString("name[1]");
+        String secondName= jsonPath.getString("name[1]");
+        List<String> jobs=jsonPath.getList("experience.job[0]");
 
-        List<String > jobs=jsonPath.getList("experience.job[0]");
+        System.out.println(secondName);
+        System.out.println(jobs);
 
-        System.out.println("secondName = " + secondName);
-        System.out.println("jobs = " + jobs);
+
+        List<String> joblist = new ArrayList<>();
+        joblist.add("Junior Developer1");
+        joblist.add("Junior Developer1");
+        joblist.add("Junior Developer");
+
+        System.out.println(joblist);
+
 
         Assert.assertEquals(secondName,"isa akyuz");
-        Assert.assertEquals(jobs,"Junior Developer1, Junior Developer1, Junior Developer");
-
+        Assert.assertEquals(jobs,joblist);
     }
 
     /*
@@ -105,6 +113,8 @@ public class UserWith_JsonPath {
         Response response= given().accept(ContentType.JSON)
                 .pathParam("id",111)
                 .when().get("/allusers/getbyid/{id}");
+
+
 
         Assert.assertEquals(response.statusCode(),200);
         Assert.assertEquals(response.contentType(),"application/json; charset=UTF-8");

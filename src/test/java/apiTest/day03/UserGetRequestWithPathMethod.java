@@ -78,7 +78,6 @@ public class UserGetRequestWithPathMethod {
 
         int id=response.path("id[0]");
         System.out.println("id = " + id);
-
         Assert.assertEquals(id,1);
 
         String name=response.path("name[0]");
