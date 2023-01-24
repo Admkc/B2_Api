@@ -76,7 +76,9 @@ public class HamcretsMatcher {
                         "job",hasItems("QA"),
                         "experience.job[0]",hasItems("Junior Developer1"),
                         "name[0]",equalTo("MercanS"))
+
               //  .log().all();
+
                 .log().headers();
 
 
