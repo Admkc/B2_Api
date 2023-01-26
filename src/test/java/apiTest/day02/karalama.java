@@ -14,15 +14,6 @@ import static org.hamcrest.Matchers.*;
 import java.util.*;
 
 public class karalama {
-    public static void main(String[] args) {
-
-
-        String word = "ahmetBulutloöz";
-        System.out.println("The letter before 'B' is: " + word.charAt(word.indexOf("B") - 1));
-        System.out.println("The letter after 'B' is: " + word.charAt(word.indexOf("B") + 1));
-
-        System.out.println("word.charAt(word.indexOf(\"l\")-1) = " + word.charAt(word.indexOf("l") - 1));
-    }
     @BeforeClass
     public void beforeClass(){
 
@@ -31,10 +22,18 @@ public class karalama {
     }
     @Test
     public void test(){
-
-        Response response=given().accept(ContentType.JSON)
-                .queryParam("pagesize",50)
-                .queryParam("page",1)
+        /**
+         * end point => /allusers/alluser -> GET All User
+         * page size : 50
+         * page : 2
+         * The company in the 8. user's experience part
+         * verify this informat,on
+         * 1.company -> Ghan IT Com
+         * 2.company -> GHAN II IT BV
+         */
+        Response response = given().accept(ContentType.JSON)
+                .queryParam("pagesize", 50)
+                .queryParam("page", 2)
                 .when().get("/allusers/alluser");
 
         Assert.assertEquals(response.statusCode(),200);
@@ -43,21 +42,17 @@ public class karalama {
 
         System.out.println("alluser = " + alluser);
 
-        System.out.println("alluser.get(1).get(\"name\") = " + alluser.get(1).get("name"));
-        String nam= (String) alluser.get(1).get("name");
-        Assert.assertEquals(nam,"isa akyuz");
+        List<Map<String ,Object>> experUser= (List<Map<String, Object>>) alluser.get(7).get("experience");
 
-        System.out.println("alluser.get(0).get(\"skills\") = " + alluser.get(0).get("skills"));
+        System.out.println("experUser = " + experUser);
 
-        List<String > skl= (List<String>) alluser.get(0).get("skills");
+        String com1= (String) experUser.get(0).get("company");
+        Assert.assertEquals(com1,"Ghan IT Com");
 
-        Assert.assertEquals(skl.get(0),"PHP");
+        String com2= (String) experUser.get(1).get("company");
 
-        List<Map<String ,Object>> expelistMap= (List<Map<String, Object>>) alluser.get(0).get("experience");
+        Assert.assertEquals(com2,"GHAN II IT BV");
 
-        System.out.println("expelistMap = " + expelistMap);
-
-        System.out.println("expelistMap.get(1).get(\"job\") = " + expelistMap.get(1).get("job"));
 
 
     }
