@@ -1,4 +1,4 @@
-package apiTest.day07_POSTREquest;
+package apiTest.day07_POSTRequest;
 
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;

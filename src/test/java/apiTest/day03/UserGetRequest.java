@@ -55,6 +55,7 @@ public class UserGetRequest {
 
         //verify the body
         Assert.assertTrue(response.body().asString().contains("Thomas Eduson"));
+
     }
 
 

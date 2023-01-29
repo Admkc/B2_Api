@@ -1,11 +1,4 @@
-package apiTest.day07_POSTREquest;
-
-import io.restassured.http.ContentType;
-import io.restassured.response.Response;
-import org.testng.annotations.Test;
-
-import java.util.HashMap;
-import java.util.Map;
+package apiTest.day07_POSTRequest;
 
 import static io.restassured.RestAssured.given;
 import static org.testng.AssertJUnit.assertEquals;
